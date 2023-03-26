@@ -21,7 +21,7 @@
     #121212 55.22%,
     #121212 75.34%,
     #121212 85.45%,
-    rgba(18, 18, 18, 0) 100%
+    #201e1e 100%
   );
   --bg-solid: #303030;
   --bg-secondary: black;
@@ -33,4 +33,43 @@ html,
 body {
   scroll-behavior: smooth;
   font-family: "DM Sans", sans-serif;
+  color: var(--primary);
+}
+
+/* --------------- sidebar --------------- */
+#sidebar {
+  background-color: var(--bg-secondary);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+#sidebar > div {
+  margin: 1rem 0;
+  cursor: pointer;
+  padding: 1rem 3rem 1rem 1rem;
+  border-radius: 6px;
+}
+
+#sidebar > div:hover {
+  background-color: var(--bg-solid);
+}
+
+.active-tab {
+  background-color: var(--bg-solid);
+}
+
+#sidebar > div > a > svg {
+  margin-right: 24px;
+}
+
+/* --------------- main --------------- */
+main {
+  display: flex;
+  background: var(--bg);
+  width: 100vw;
+  font-size: 19px;
+  font-weight: 700;
 }

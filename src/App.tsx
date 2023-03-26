@@ -1,5 +1,12 @@
+import SideBar from "./components/SideBar";
+
 const App = () => {
-  return <></>;
+  return (
+    <main>
+      <SideBar />
+      "dssdssdd"
+    </main>
+  );
 };
 
 export default App;
