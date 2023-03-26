@@ -23,7 +23,7 @@
     #121212 85.45%,
     #201e1e 100%
   );
-  --bg-solid: #303030;
+  --bg-hover: #303030;
   --bg-secondary: black;
   --primary: #ffffff;
   --secondary: #1db954;
@@ -35,63 +35,127 @@ body {
   font-family: "DM Sans", sans-serif;
   color: var(--primary);
 }
+/* --------------- main --------------- */
+main {
+  display: flex;
+  background: var(--bg);
+  font-size: 19px;
+  font-weight: 700;
+}
 
 /* --------------- sidebar --------------- */
 #sidebar {
   background-color: var(--bg-secondary);
   height: 100vh;
+  width: 20vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 20px;
 }
 
 #sidebar > div {
-  margin: 1rem 0;
+  margin: 1rem 20px;
+  padding: 12px;
   cursor: pointer;
-  padding: 1rem 3rem 1rem 1rem;
   border-radius: 6px;
   text-transform: capitalize;
+  display: flex;
+  justify-items: center;
+  flex-wrap: nowrap;
 }
 
 #sidebar > div:hover {
-  background-color: var(--bg-solid);
+  background-color: var(--bg-hover);
 }
 
 .active-tab {
-  background-color: var(--bg-solid);
+  background-color: var(--bg-hover);
 }
 
 #sidebar > div > a > svg {
   margin-right: 24px;
 }
 
-/* --------------- main --------------- */
-main {
-  display: flex;
-  background: var(--bg);
-  width: 100vw;
-  font-size: 19px;
-  font-weight: 700;
-}
-
 /* --------------- Home page --------------- */
 #home {
-  flex: 1 1 0%;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 100vh;
 }
+
 #hero {
   height: 200px;
-  background-image: url("../public/SL.123119.26540.04.jpg");
+  background-image: url("/SL.123119.26540.04.jpg");
   background-size: cover;
-  /* display: flex; */
   padding: 4rem;
   font-size: 2.7rem;
 }
+
 #hero > p {
   width: max-content;
 }
+
 #hero > p > span {
   display: block;
   font-size: 2.3rem;
   text-align: right;
+}
+/* --------------- releases --------------- */
+#releases {
+  padding: 2.5rem;
+  flex: 1 1 0;
+}
+
+#releases .headline-cont {
+  display: flex;
+  align-items: center;
+}
+
+#releases .headline-cont h3 {
+  font-size: 1.5rem;
+}
+
+#releases > div > .line {
+  background-color: #777;
+  height: 1px;
+  flex: 1 1 0%;
+  margin: 0 1rem;
+}
+
+#releases .new-releases-cont {
+  padding: 1rem 0;
+  display: flex;
+  overflow-x: auto;
+}
+
+/* --------------- song --------------- */
+.song {
+  padding: 20px;
+  background-color: #181818;
+  cursor: pointer;
+  margin: 0 15px;
+  max-width: fit-content;
+}
+.song:hover {
+  background-color: var(--bg-hover);
+}
+.song > div {
+  width: 180px;
+  height: 180px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.song > div > img {
+  width: 100%;
+}
+
+.song > h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 1.5rem 5px 0.5rem;
+  max-width: 170px;
+  text-align: center;
 }
