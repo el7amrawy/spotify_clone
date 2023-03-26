@@ -23,8 +23,9 @@
     #121212 85.45%,
     #201e1e 100%
   );
-  --bg-hover: #303030;
   --bg-secondary: black;
+  --bg-3rd: #181818;
+  --bg-hover: #303030;
   --primary: #ffffff;
   --secondary: #1db954;
 }
@@ -102,37 +103,37 @@ main {
   text-align: right;
 }
 /* --------------- releases --------------- */
-#releases {
+.album-list {
   padding: 1rem 2.5rem;
   flex: 1 1 0;
 }
 
-#releases .headline-cont {
+.album-list .headline-cont {
   display: flex;
   align-items: center;
 }
 
-#releases .headline-cont h3 {
+.album-list .headline-cont h3 {
   font-size: 1.2rem;
 }
 
-#releases .headline-cont .line {
+.album-list .headline-cont .line {
   background-color: #777;
   height: 1px;
   flex: 1 1 0%;
   margin: 0 1rem;
 }
-#releases .headline-cont .conrolers-cont svg {
+.album-list .headline-cont .conrolers-cont svg {
   margin: 0 8px;
   cursor: pointer;
 }
-#releases .new-releases-cont {
+.album-list .albums-cont {
   padding: 1rem 0;
   display: flex;
   overflow-x: auto;
 }
 /* scroll bar */
-#releases .new-releases-cont::-webkit-scrollbar {
+.album-list .albums-cont::-webkit-scrollbar {
   width: 1px;
   display: none;
 }
@@ -161,7 +162,7 @@ main {
 .song > h4 {
   font-size: 1rem;
   font-weight: 500;
-  margin: 1.5rem 5px 0.5rem;
+  margin: 1.5rem 5px 0;
   max-width: 170px;
   text-align: center;
 }
