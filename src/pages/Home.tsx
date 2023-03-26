@@ -1,9 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleLeft,
+  faMoon,
+  faSun,
+  faAngleRight,
+} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import config from "../config";
 import Song from "../components/Song";
+import { useDraggable } from "react-use-draggable-scroll";
 
 type Song = {
   id: string;
@@ -29,7 +35,10 @@ const Home = () => {
       });
   }, []);
 
-  /* -------------------------------- */
+  /* ------------- draggable scroll ------------------- */
+  const ref =
+    useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
+  const { events } = useDraggable(ref);
 
   return (
     <section id="home">
@@ -46,8 +55,32 @@ const Home = () => {
         <div className="headline-cont">
           <h3>New Releases</h3>
           <div className="line"></div>
+          <div className="conrolers-cont">
+            <FontAwesomeIcon
+              icon={faAngleLeft}
+              onClick={() => {
+                const elem = document.querySelector(
+                  ".new-releases-cont"
+                ) as HTMLElement;
+                elem.scrollLeft -= 100;
+              }}
+            />
+            <FontAwesomeIcon
+              icon={faAngleRight}
+              onClick={() => {
+                const elem = document.querySelector(
+                  ".new-releases-cont"
+                ) as HTMLElement;
+                elem.scrollLeft += 100;
+              }}
+            />
+          </div>
         </div>
-        <div className="new-releases-cont">
+        <div className="new-releases-cont" ref={ref} {...events}>
+          <Song />
+          <Song />
+          <Song />
+          <Song />
           <Song />
           <Song />
           <Song />

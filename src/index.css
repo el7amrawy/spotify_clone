@@ -47,7 +47,6 @@ main {
 #sidebar {
   background-color: var(--bg-secondary);
   height: 100vh;
-  width: 20vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,11 +58,11 @@ main {
   cursor: pointer;
   border-radius: 6px;
   text-transform: capitalize;
-  display: flex;
-  justify-items: center;
   flex-wrap: nowrap;
 }
-
+#sidebar > div > a {
+  margin-right: 3.5rem;
+}
 #sidebar > div:hover {
   background-color: var(--bg-hover);
 }
@@ -86,7 +85,7 @@ main {
 }
 
 #hero {
-  height: 200px;
+  height: 220px;
   background-image: url("/SL.123119.26540.04.jpg");
   background-size: cover;
   padding: 4rem;
@@ -104,7 +103,7 @@ main {
 }
 /* --------------- releases --------------- */
 #releases {
-  padding: 2.5rem;
+  padding: 1rem 2.5rem;
   flex: 1 1 0;
 }
 
@@ -114,22 +113,29 @@ main {
 }
 
 #releases .headline-cont h3 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
-#releases > div > .line {
+#releases .headline-cont .line {
   background-color: #777;
   height: 1px;
   flex: 1 1 0%;
   margin: 0 1rem;
 }
-
+#releases .headline-cont .conrolers-cont svg {
+  margin: 0 8px;
+  cursor: pointer;
+}
 #releases .new-releases-cont {
   padding: 1rem 0;
   display: flex;
   overflow-x: auto;
 }
-
+/* scroll bar */
+#releases .new-releases-cont::-webkit-scrollbar {
+  width: 1px;
+  display: none;
+}
 /* --------------- song --------------- */
 .song {
   padding: 20px;
@@ -142,8 +148,8 @@ main {
   background-color: var(--bg-hover);
 }
 .song > div {
-  width: 180px;
-  height: 180px;
+  width: 150px;
+  height: 150px;
   border-radius: 14px;
   overflow: hidden;
 }
