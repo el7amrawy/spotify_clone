@@ -34,7 +34,8 @@ const Song = (props: SongProps) => {
   useEffect(() => {
     if (favourite) {
       (ref.current as unknown as HTMLElement).classList.remove("hidden");
-      setFavouriteSongs([...favouriteSongs, song]);
+      if (!favouriteSongs.find((s) => s.key === song.key))
+        setFavouriteSongs([...favouriteSongs, song]);
     } else {
       (ref.current as unknown as HTMLElement).classList.add("hidden");
       setFavouriteSongs(favouriteSongs.filter((s) => s.key !== song.key));
