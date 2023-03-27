@@ -1,6 +1,7 @@
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
+import { useFavouriteSongsContext } from "../context/FavouriteSongsProvider";
 
 type Img = {
   background: string;
@@ -19,14 +20,23 @@ type SongProps = {
 
 const Song = (props: SongProps) => {
   const { song } = props;
+  const { favouriteSongs, setFavouriteSongs } = useFavouriteSongsContext();
   /* ------------- states ------------------- */
-  const [favourite, setFavourite] = useState(false);
+  const [favourite, setFavourite] = useState(() => {
+    if (favouriteSongs.find((s) => s.key === song.key)) {
+      return true;
+    }
+    return false;
+  });
   /* -------------------------------- */
   const ref = useRef(null);
   /* ------------- effects ------------------- */
   useEffect(() => {
     if (favourite) {
       (ref.current as unknown as HTMLElement).classList.remove("hidden");
+      if (!favouriteSongs.find((s) => s.key === song.key)) {
+        setFavouriteSongs([...favouriteSongs, song]);
+      }
     } else {
       (ref.current as unknown as HTMLElement).classList.add("hidden");
     }
