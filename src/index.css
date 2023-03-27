@@ -143,9 +143,22 @@ main {
   cursor: pointer;
   margin: 0 15px;
   max-width: fit-content;
+  position: relative;
 }
 .song:hover {
   background-color: var(--bg-hover);
+}
+.song > svg {
+  position: absolute;
+  font-size: 1.5rem;
+  top: 1rem;
+  right: 1rem;
+}
+.hidden {
+  visibility: hidden;
+}
+.song:hover svg {
+  visibility: visible;
 }
 .song > div {
   width: 150px;
@@ -209,5 +222,7 @@ main {
 /* --------------- Search Results Page --------------- */
 #search-results {
   flex: 1 1 0;
+  height: 100vh;
   padding: 2rem;
+  overflow-y: auto;
 }
