@@ -183,15 +183,26 @@ main {
   all: unset;
   flex: 1 1 0;
 }
-/* #search .search-bar input::placeholder {
-} */
 #search .search-bar svg {
   margin: 0 1rem;
 }
-
 #search .seacrh-results {
-  background-color: #1db954;
   margin: 2rem 0.5rem;
   border-radius: 8px;
   padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+#search .seacrh-results .search-item {
+  all: unset;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 14px;
+  width: max-content;
+  margin: 10px;
+  cursor: pointer;
+}
+#search .seacrh-results .search-item:active {
+  background-color: var(--bg-hover);
 }

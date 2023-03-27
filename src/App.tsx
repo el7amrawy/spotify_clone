@@ -11,6 +11,7 @@ const App = () => {
         <Route path="/" element={<RootPage />}>
           <Route path="home" element={<Home />} />
           <Route path="search" element={<Search />} />
+          <Route path="search/:string" element={<>ss</>} />
         </Route>
       </Routes>
     </BrowserRouter>
