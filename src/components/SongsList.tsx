@@ -36,6 +36,8 @@ const SongsList = (props: AlbumListProps) => {
       .then(({ data }) => {
         const songs: SongData[] = data.tracks;
         setAlbums(songs);
+      }).catch(err=>{
+        console.error(err)
       });
   }, []);
   /* ------------- draggable scroll ------------------- */

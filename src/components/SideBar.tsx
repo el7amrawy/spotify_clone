@@ -5,52 +5,36 @@ import {
   faHeart,
   faCirclePlay,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState, SyntheticEvent } from "react";
+import { SyntheticEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const SideBar = () => {
-  const [activeTab, setActiveTab] = useState("home");
-
   const clickHandler = (ev: SyntheticEvent) => {
-    const activeTab = document.querySelector("#sidebar > div.active-tab");
+    const activeTab = document.querySelector("#sidebar > a.active-tab");
     const target = ev.target as HTMLElement;
-    let tabName = "";
+    const tabName = target.innerText;
     activeTab?.classList.remove("active-tab");
-    if (target.tagName === "A") {
-      target.parentElement?.classList.add("active-tab");
-      tabName = target.textContent as unknown as string;
-    } else {
-      target.classList.add("active-tab");
-      tabName = target.firstChild?.textContent as unknown as string;
-    }
-    setActiveTab(tabName);
+    target.classList.add("active-tab");
   };
 
   return (
     <aside id="sidebar">
-      <div className="active-tab" onClick={clickHandler}>
-        <a>
-          <FontAwesomeIcon icon={faBarsStaggered} />
-          home
-        </a>
-      </div>
-      <div onClick={clickHandler}>
-        <a>
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-          search
-        </a>
-      </div>
-      <div onClick={clickHandler}>
-        <a>
-          <FontAwesomeIcon icon={faHeart} />
-          favourites
-        </a>
-      </div>
-      <div onClick={clickHandler}>
-        <a>
-          <FontAwesomeIcon icon={faCirclePlay} />
-          playlists
-        </a>
-      </div>
+      <Link className="active-tab" to="home" onClick={clickHandler}>
+        <FontAwesomeIcon icon={faBarsStaggered} />
+        home
+      </Link>
+      <Link to="search" onClick={clickHandler}>
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
+        search
+      </Link>
+      <Link to="favourites" onClick={clickHandler}>
+        <FontAwesomeIcon icon={faHeart} />
+        favourites
+      </Link>
+      <Link to="playlists" onClick={clickHandler}>
+        <FontAwesomeIcon icon={faCirclePlay} />
+        playlists
+      </Link>
     </aside>
   );
 };
