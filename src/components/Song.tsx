@@ -1,4 +1,13 @@
-import { SongData } from "./SongsList";
+type Img = {
+  background: string;
+  coverart: string;
+};
+
+export type SongData = {
+  key: string;
+  title: string;
+  images: Img;
+};
 
 type SongProps = {
   song: SongData;

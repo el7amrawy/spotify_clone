@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import SongsList, { SongData } from "../components/SongsList";
+import { SongData } from "../components/Song";
+import SongsList from "../components/SongsList";
 import config from "../config";
 
 type ArtistData = {

@@ -4,7 +4,7 @@ import SongsList from "../components/SongsList";
 import axios from "axios";
 import config from "../config";
 import { useEffect, useState } from "react";
-import { SongData } from "../components/SongsList";
+import { SongData } from "../components/Song";
 
 const Home = () => {
   /* ---------------- states ---------------- */

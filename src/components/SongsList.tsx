@@ -2,20 +2,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { useRef } from "react";
 import { useDraggable } from "react-use-draggable-scroll";
-import Song from "./Song";
+import Song, { SongData } from "./Song";
 
 // types
-type Img = {
-  background: string;
-  coverart: string;
-};
-
-export type SongData = {
-  key: string;
-  title: string;
-  images: Img;
-};
-
 type AlbumListProps = {
   name: string;
   songs: SongData[];
