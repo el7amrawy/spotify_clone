@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
-import AlbumList from "../components/AlbumList";
+import SongsList from "../components/SongsList";
 
 const Home = () => {
   /* ---------------- states ---------------- */
@@ -17,10 +17,13 @@ const Home = () => {
           </span>
         </p>
       </div>
-      <AlbumList url="/browse/new-releases?limit=20" name="New Releases" />
-      <AlbumList
-        url="/browse/featured-playlists?country=SE&locale=sv_SE&timestamp=2014-10-23T09%3A00%3A00&limit=20"
-        name="Featured Playlists"
+      <SongsList
+        url="/charts/track?pageSize=20&startFrom=0"
+        name="Popular Songs"
+      />
+      <SongsList
+        url="/songs/list-recommendations?key=484129036&locale=en-US"
+        name="Recommendations"
       />
     </section>
   );

@@ -8,15 +8,14 @@ import config from "../config";
 
 // types
 type Img = {
-  height: number;
-  width: number;
-  url: string;
+  background: string;
+  coverart: string;
 };
 
 export type SongData = {
-  id: string;
-  name: string;
-  images: Img[];
+  key: string;
+  title: string;
+  images: Img;
 };
 
 type AlbumListProps = {
@@ -24,7 +23,7 @@ type AlbumListProps = {
   name: string;
 };
 
-const AlbumList = (props: AlbumListProps) => {
+const SongsList = (props: AlbumListProps) => {
   const { url, name } = props;
   /* ---------------- states ---------------- */
   const [albums, setAlbums] = useState([] as unknown as SongData[]);
@@ -32,18 +31,10 @@ const AlbumList = (props: AlbumListProps) => {
   useEffect(() => {
     axios
       .get(config.api + url, {
-        headers: {
-          Authorization: config.token,
-        },
+        headers: config.headers,
       })
       .then(({ data }) => {
-        // console.log(name, data);
-        let songs: SongData[];
-        if (name === "Featured Playlists") {
-          songs = data.playlists.items;
-        } else {
-          songs = data.albums.items;
-        }
+        const songs: SongData[] = data.tracks;
         setAlbums(songs);
       });
   }, []);
@@ -53,7 +44,7 @@ const AlbumList = (props: AlbumListProps) => {
   const { events } = useDraggable(ref);
   /* ------------- elems ------------------- */
 
-  const songElems = albums?.map((song) => <Song song={song} key={song.id} />);
+  const songElems = albums?.map((song) => <Song song={song} key={song.key} />);
   return (
     <div className="album-list">
       <div className="headline-cont">
@@ -83,4 +74,4 @@ const AlbumList = (props: AlbumListProps) => {
   );
 };
 
-export default AlbumList;
+export default SongsList;

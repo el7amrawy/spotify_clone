@@ -1,4 +1,4 @@
-import { SongData } from "./AlbumList";
+import { SongData } from "./SongsList";
 
 type SongProps = {
   song: SongData;
@@ -6,14 +6,12 @@ type SongProps = {
 
 const Song = (props: SongProps) => {
   const { song } = props;
-  // console.log(song.imgs);
-
   return (
     <div className="song">
       <div>
-        <img src={song.images[0].url} />
+        <img src={song.images.coverart} />
       </div>
-      <h4>{song.name}</h4>
+      <h4>{song.title}</h4>
     </div>
   );
 };
