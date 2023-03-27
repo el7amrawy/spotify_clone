@@ -206,3 +206,8 @@ main {
 #search .seacrh-results .search-item:active {
   background-color: var(--bg-hover);
 }
+/* --------------- Search Results Page --------------- */
+#search-results {
+  flex: 1 1 0;
+  padding: 2rem;
+}

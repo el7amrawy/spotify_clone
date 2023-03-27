@@ -1,10 +1,45 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import SongsList from "../components/SongsList";
+import axios from "axios";
+import config from "../config";
+import { useEffect, useState } from "react";
+import { SongData } from "../components/SongsList";
 
 const Home = () => {
   /* ---------------- states ---------------- */
+  const [songs1, setSongs1] = useState([] as SongData[]);
+  const [songs2, setSongs2] = useState([] as SongData[]);
   /* ---------------- effects ---------------- */
+  useEffect(() => {
+    axios
+      .get(config.api + "/charts/track?pageSize=20&startFrom=0", {
+        headers: config.headers,
+      })
+      .then(({ data }) => {
+        const songs: SongData[] = data.tracks;
+        setSongs1(songs);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+  useEffect(() => {
+    axios
+      .get(
+        config.api + "/songs/list-recommendations?key=484129036&locale=en-US",
+        {
+          headers: config.headers,
+        }
+      )
+      .then(({ data }) => {
+        const songs: SongData[] = data.tracks;
+        setSongs2(songs);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
   /* ------------- elems ------------------- */
   return (
     <section id="home">
@@ -17,14 +52,8 @@ const Home = () => {
           </span>
         </p>
       </div>
-      <SongsList
-        url="/charts/track?pageSize=20&startFrom=0"
-        name="Popular Songs"
-      />
-      <SongsList
-        url="/songs/list-recommendations?key=484129036&locale=en-US"
-        name="Recommendations"
-      />
+      <SongsList name="Popular Songs" songs={songs1} />
+      <SongsList name="Recommendations" songs={songs2} />
     </section>
   );
 };

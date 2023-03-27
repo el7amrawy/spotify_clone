@@ -1,10 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { useDraggable } from "react-use-draggable-scroll";
 import Song from "./Song";
-import axios from "axios";
-import config from "../config";
 
 // types
 type Img = {
@@ -19,34 +17,19 @@ export type SongData = {
 };
 
 type AlbumListProps = {
-  url: string;
   name: string;
+  songs: SongData[];
 };
 
 const SongsList = (props: AlbumListProps) => {
-  const { url, name } = props;
-  /* ---------------- states ---------------- */
-  const [albums, setAlbums] = useState([] as unknown as SongData[]);
-  /* ---------------- effects ---------------- */
-  useEffect(() => {
-    axios
-      .get(config.api + url, {
-        headers: config.headers,
-      })
-      .then(({ data }) => {
-        const songs: SongData[] = data.tracks;
-        setAlbums(songs);
-      }).catch(err=>{
-        console.error(err)
-      });
-  }, []);
+  const { songs, name } = props;
   /* ------------- draggable scroll ------------------- */
   const ref =
     useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
   const { events } = useDraggable(ref);
   /* ------------- elems ------------------- */
 
-  const songElems = albums?.map((song) => <Song song={song} key={song.key} />);
+  const songElems = songs?.map((song) => <Song song={song} key={song.key} />);
   return (
     <div className="album-list">
       <div className="headline-cont">
