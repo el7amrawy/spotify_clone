@@ -1,15 +1,19 @@
 import { SongData } from "../components/Song";
-import SongsList from "../components/SongsList";
 import { usePlaylists } from "../context/PlaylistsProvider";
+import Playlist from "../components/Playlist";
 
 const PlaylistsPage = () => {
   const { playlists, playlistsNames } = usePlaylists();
   const listElems = playlistsNames.map((name) => (
-    <SongsList
+    <Playlist
       name={name}
       songs={playlists[name as keyof Object] as unknown as SongData[]}
     />
   ));
-  return <section id="playlists">{listElems}</section>;
+  return (
+    <section id="playlists">
+      {playlistsNames.length ? listElems : "You don't have any playlists"}
+    </section>
+  );
 };
 export default PlaylistsPage;

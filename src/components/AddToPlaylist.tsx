@@ -74,7 +74,7 @@ const AddToPlaylist = () => {
       onClick={playListClickHandler}
       key={p}
       className={
-        (playlists[p as keyof Object] as unknown as SongData[]).find(
+        (playlists[p as keyof Object] as unknown as SongData[])?.find(
           (x) => x.key === chosedSong.key
         )
           ? "chosed-list"
