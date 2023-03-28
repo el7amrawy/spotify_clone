@@ -23,7 +23,6 @@ type ChosedSongProviderProps = {
 const ChosedSongProvider = (props: ChosedSongProviderProps) => {
   const { children } = props;
   const [chosedSong, setChosedSong] = useState({} as SongData);
-  console.log(chosedSong);
 
   return (
     <chosedSongContext.Provider value={{ chosedSong, setChosedSong }}>
