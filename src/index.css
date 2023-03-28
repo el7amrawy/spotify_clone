@@ -143,7 +143,6 @@ main {
   background-color: #181818;
   margin: 0 15px;
   position: relative;
-  /* border: 1px solid white; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -183,12 +182,10 @@ main {
   border-radius: 14px;
   overflow: hidden;
   margin-left: 0;
-  /* border: 1px red solid; */
 }
 
 .song > div > img {
   width: 100%;
-  /* object-fit: fill; */
 }
 
 .song > h4 {
@@ -321,4 +318,11 @@ main {
 }
 .add-playlist-cont .playlists-list-cont ul li.chosed-list {
   background-color: var(--secondary);
+}
+/* --------------- playlists page --------------- */
+#playlists {
+  flex: 1 1 0;
+  height: 100vh;
+  padding: 2rem;
+  overflow-y: auto;
 }

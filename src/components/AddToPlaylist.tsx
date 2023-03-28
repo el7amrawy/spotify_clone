@@ -4,11 +4,6 @@ import { usePlaylists } from "../context/PlaylistsProvider";
 import { SongData } from "./Song";
 
 const AddToPlaylist = () => {
-  /* ---------------- states ---------------- */
-  const [playlistName, setPlaylistName] = useState("");
-  const [chosedPlaylists, setChosedPlaylists] = useState([] as Array<string>);
-
-  /* -------------------------------- */
   const {
     setTogglePlaylist,
     playlistsNames,
@@ -16,8 +11,16 @@ const AddToPlaylist = () => {
     playlists,
     setPlaylists,
   } = usePlaylists();
-
   const { chosedSong } = useChosedSong();
+  /* ---------------- states ---------------- */
+  const [playlistName, setPlaylistName] = useState("");
+  const [chosedPlaylists, setChosedPlaylists] = useState(() =>
+    playlistsNames.filter((n) =>
+      (playlists[n as keyof Object] as unknown as SongData[]).find(
+        (song) => song.key === chosedSong.key
+      )
+    )
+  );
   /* ---------------- refs ---------------- */
   const contRef = useRef(null);
 

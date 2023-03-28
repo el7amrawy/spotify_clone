@@ -5,6 +5,7 @@ import Search from "./pages/Search";
 import RootPage from "./pages/RootPage";
 import SearchResults from "./pages/SearchResults";
 import Favourites from "./pages/Favourites";
+import PlaylistsPage from "./pages/PlaylistsPage";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="search" element={<Search />} />
           <Route path="search/:string" element={<SearchResults />} />
           <Route path="favourites" element={<Favourites />} />
+          <Route path="playlists" element={<PlaylistsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
