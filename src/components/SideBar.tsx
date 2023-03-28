@@ -5,25 +5,42 @@ import {
   faHeart,
   faCirclePlay,
 } from "@fortawesome/free-solid-svg-icons";
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { usePlaylists } from "../context/PlaylistsProvider";
 import AddToPlaylist from "./AddToPlaylist";
-import { useChosedSong } from "../context/ChosedSongProvider";
+import { useLocation } from "react-router-dom";
 
 const SideBar = () => {
   const { togglePlaylist } = usePlaylists();
-  const { chosedSong } = useChosedSong();
+  const loacation = useLocation();
+  /* -------------- states -------------- */
+  const [currentTab, setCurrentTab] = useState(() =>
+    loacation.pathname.split("/")[1].toLocaleLowerCase()
+  );
+
   const clickHandler = (ev: SyntheticEvent) => {
-    const activeTab = document.querySelector("#sidebar > a.active-tab");
     const target = ev.target as HTMLElement;
-    activeTab?.classList.remove("active-tab");
-    target.classList.add("active-tab");
+    setCurrentTab(target.innerText.toLowerCase());
   };
+
+  useEffect(() => {
+    const tabElems = Array.from(
+      document.querySelectorAll("#sidebar > a")
+    ) as HTMLElement[];
+
+    tabElems.map((elem) => {
+      if (elem.innerText.toLocaleLowerCase() === currentTab) {
+        elem.classList.add("active-tab");
+      } else {
+        elem.classList.remove("active-tab");
+      }
+    });
+  }, [currentTab]);
 
   return (
     <>
-      {togglePlaylist ? <AddToPlaylist song={chosedSong} /> : null}
+      {togglePlaylist ? <AddToPlaylist /> : null}
       <aside id="sidebar">
         <Link className="active-tab" to="home" onClick={clickHandler}>
           <FontAwesomeIcon icon={faBarsStaggered} />
