@@ -140,10 +140,11 @@ main {
 .song {
   padding: 20px;
   background-color: #181818;
-  cursor: pointer;
+  /* cursor: pointer; */
   margin: 0 15px;
   max-width: fit-content;
   position: relative;
+  text-align: center;
 }
 .song:hover {
   background-color: var(--bg-hover);
@@ -152,12 +153,26 @@ main {
   position: absolute;
   font-size: 1.5rem;
   top: 1rem;
+  cursor: pointer;
+}
+.song > .heart {
   right: 1rem;
 }
+
 .hidden {
   visibility: hidden;
 }
-.song:hover svg {
+
+.song:hover > svg {
+  visibility: visible;
+}
+
+.song .plus {
+  left: 1rem;
+  visibility: hidden;
+}
+
+.song:hover .plus {
   visibility: visible;
 }
 .song > div {

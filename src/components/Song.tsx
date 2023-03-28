@@ -1,4 +1,4 @@
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 import { useFavouriteSongsContext } from "../context/FavouriteSongsProvider";
@@ -48,7 +48,9 @@ const Song = (props: SongProps) => {
         onClick={() => setFavourite(!favourite)}
         style={{ color: favourite ? "red" : "var(--primary)" }}
         ref={ref}
+        className="heart"
       />
+      <FontAwesomeIcon icon={faSquarePlus} className="plus" />
       <div>
         <img src={song.images.coverart} />
       </div>
