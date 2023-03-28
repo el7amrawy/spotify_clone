@@ -6,23 +6,24 @@ import {
   faCirclePlay,
 } from "@fortawesome/free-solid-svg-icons";
 import { SyntheticEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { usePlaylists } from "../context/PlaylistsProvider";
 import AddToPlaylist from "./AddToPlaylist";
-import { useTogglePlaylist } from "../context/PlaylistsProvider";
+import { useChosedSong } from "../context/ChosedSongProvider";
 
 const SideBar = () => {
-  const { togglePlaylist } = useTogglePlaylist();
+  const { togglePlaylist } = usePlaylists();
+  const { chosedSong } = useChosedSong();
   const clickHandler = (ev: SyntheticEvent) => {
     const activeTab = document.querySelector("#sidebar > a.active-tab");
     const target = ev.target as HTMLElement;
-    const tabName = target.innerText;
     activeTab?.classList.remove("active-tab");
     target.classList.add("active-tab");
   };
 
   return (
     <>
-      {togglePlaylist ? <AddToPlaylist /> : null}
+      {togglePlaylist ? <AddToPlaylist song={chosedSong} /> : null}
       <aside id="sidebar">
         <Link className="active-tab" to="home" onClick={clickHandler}>
           <FontAwesomeIcon icon={faBarsStaggered} />

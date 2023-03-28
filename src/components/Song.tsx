@@ -1,9 +1,9 @@
 import { faHeart, faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
+import { useChosedSong } from "../context/ChosedSongProvider";
 import { useFavouriteSongsContext } from "../context/FavouriteSongsProvider";
-import { useTogglePlaylist } from "../context/PlaylistsProvider";
-import AddToPlaylist from "./AddToPlaylist";
+import { usePlaylists } from "../context/PlaylistsProvider";
 
 type Img = {
   background: string;
@@ -23,7 +23,8 @@ type SongProps = {
 const Song = (props: SongProps) => {
   const { song } = props;
   const { favouriteSongs, setFavouriteSongs } = useFavouriteSongsContext();
-  const { setTogglePlaylist } = useTogglePlaylist();
+  const { setTogglePlaylist } = usePlaylists();
+  const { setChosedSong } = useChosedSong();
   /* ------------- states ------------------- */
   const [favourite, setFavourite] = useState(() => {
     if (favouriteSongs.find((s) => s.key === song.key)) {
@@ -56,7 +57,10 @@ const Song = (props: SongProps) => {
       <FontAwesomeIcon
         icon={faSquarePlus}
         className="plus"
-        onClick={() => setTogglePlaylist(true)}
+        onClick={() => {
+          setTogglePlaylist(true);
+          setChosedSong(song);
+        }}
       />
       <div>
         <img src={song.images.coverart} />
