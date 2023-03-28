@@ -2,18 +2,21 @@ import { useEffect } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import FavouriteSongsProvider from "../context/FavouriteSongsProvider";
+import PlaylistsProvider from "../context/PlaylistsProvider";
 
 const RootPage = () => {
   const navigate = useNavigate();
-  useEffect(() => {
-    navigate("home");
-  }, []);
+  // useEffect(() => {
+  //   navigate("home");
+  // }, []);
   return (
     <FavouriteSongsProvider>
-      <main>
-        <SideBar />
-        <Outlet />
-      </main>
+      <PlaylistsProvider>
+        <main>
+          <SideBar />
+          <Outlet />
+        </main>
+      </PlaylistsProvider>
     </FavouriteSongsProvider>
   );
 };

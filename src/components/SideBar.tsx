@@ -7,8 +7,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { SyntheticEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AddToPlaylist from "./AddToPlaylist";
+import { useTogglePlaylist } from "../context/PlaylistsProvider";
 
 const SideBar = () => {
+  const { togglePlaylist } = useTogglePlaylist();
   const clickHandler = (ev: SyntheticEvent) => {
     const activeTab = document.querySelector("#sidebar > a.active-tab");
     const target = ev.target as HTMLElement;
@@ -18,24 +21,27 @@ const SideBar = () => {
   };
 
   return (
-    <aside id="sidebar">
-      <Link className="active-tab" to="home" onClick={clickHandler}>
-        <FontAwesomeIcon icon={faBarsStaggered} />
-        home
-      </Link>
-      <Link to="search" onClick={clickHandler}>
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
-        search
-      </Link>
-      <Link to="favourites" onClick={clickHandler}>
-        <FontAwesomeIcon icon={faHeart} />
-        favourites
-      </Link>
-      <Link to="playlists" onClick={clickHandler}>
-        <FontAwesomeIcon icon={faCirclePlay} />
-        playlists
-      </Link>
-    </aside>
+    <>
+      {togglePlaylist ? <AddToPlaylist /> : null}
+      <aside id="sidebar">
+        <Link className="active-tab" to="home" onClick={clickHandler}>
+          <FontAwesomeIcon icon={faBarsStaggered} />
+          home
+        </Link>
+        <Link to="search" onClick={clickHandler}>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          search
+        </Link>
+        <Link to="favourites" onClick={clickHandler}>
+          <FontAwesomeIcon icon={faHeart} />
+          favourites
+        </Link>
+        <Link to="playlists" onClick={clickHandler}>
+          <FontAwesomeIcon icon={faCirclePlay} />
+          playlists
+        </Link>
+      </aside>
+    </>
   );
 };
 

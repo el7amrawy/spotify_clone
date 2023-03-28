@@ -25,6 +25,7 @@
   );
   --bg-secondary: black;
   --bg-3rd: #181818;
+  --bg-3rd-opacity: #181818be;
   --bg-hover: #303030;
   --primary: #ffffff;
   --secondary: #1db954;
@@ -247,4 +248,44 @@ main {
   height: 100vh;
   padding: 2rem;
   overflow-y: auto;
+}
+/* --------------- add-to playlist --------------- */
+.add-playlist-cont {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-3rd-opacity);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.add-playlist-cont .add-playlist {
+  background-color: var(--bg-3rd);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 7px 3px #222;
+}
+.add-playlist-cont .add-playlist form {
+  /* opacity: 1; */
+  margin: 1rem 0;
+}
+.add-playlist-cont .add-playlist form input {
+  all: unset;
+  background-color: var(--bg-hover);
+  border-radius: 4px;
+  padding: 0.4rem;
+}
+.add-playlist-cont .add-playlist form button {
+  all: unset;
+  background-color: var(--secondary);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-left: 2rem;
+}
+.add-playlist-cont .add-playlist form button:active {
+  background-color: var(--bg-hover);
 }
