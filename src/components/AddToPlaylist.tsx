@@ -1,13 +1,9 @@
 import { SyntheticEvent, useRef, useState } from "react";
+import { useChosedSong } from "../context/ChosedSongProvider";
 import { usePlaylists } from "../context/PlaylistsProvider";
 import { SongData } from "./Song";
 
-type AddToPlaylistProps = {
-  song: SongData;
-};
-
-const AddToPlaylist = (props: AddToPlaylistProps) => {
-  const { song } = props;
+const AddToPlaylist = () => {
   /* ---------------- states ---------------- */
   const [playlistName, setPlaylistName] = useState("");
   const [chosedPlaylists, setChosedPlaylists] = useState([] as Array<string>);
@@ -17,9 +13,11 @@ const AddToPlaylist = (props: AddToPlaylistProps) => {
     setTogglePlaylist,
     playlistsNames,
     setPlaylistsNames,
-    togglePlaylist,
+    playlists,
+    setPlaylists,
   } = usePlaylists();
 
+  const { chosedSong } = useChosedSong();
   /* ---------------- refs ---------------- */
   const contRef = useRef(null);
 
@@ -42,14 +40,47 @@ const AddToPlaylist = (props: AddToPlaylistProps) => {
 
   const playListClickHandler = (ev: SyntheticEvent) => {
     const target = ev.target as HTMLElement;
+
+    const playlist = playlists[
+      target.innerText as keyof Object
+    ] as unknown as SongData[];
+
     if (chosedPlaylists.find((p) => p === target.innerText)) {
       setChosedPlaylists(chosedPlaylists.filter((p) => p !== target.innerText));
       target.classList.remove("chosed-list");
+
+      //   remove song from playlist
+      setPlaylists({
+        ...playlists,
+        [target.innerText]: playlist.filter((p) => p.key !== chosedSong.key),
+      });
     } else {
       setChosedPlaylists([...chosedPlaylists, target.innerText]);
       target.classList.add("chosed-list");
+
+      //   add song to playlist
+      setPlaylists({
+        ...playlists,
+        [target.innerText]: [...playlist, chosedSong],
+      });
     }
   };
+  /* ---------------- elems ---------------- */
+  const liElems = playlistsNames.map((p) => (
+    <li
+      onClick={playListClickHandler}
+      key={p}
+      className={
+        (playlists[p as keyof Object] as unknown as SongData[]).find(
+          (x) => x.key === chosedSong.key
+        )
+          ? "chosed-list"
+          : ""
+      }
+    >
+      {p}
+    </li>
+  ));
 
   return (
     <div className="add-playlist-cont" onClick={clickHandler} ref={contRef}>
@@ -58,13 +89,7 @@ const AddToPlaylist = (props: AddToPlaylistProps) => {
           <>
             <h3>Add the Song to a playlist</h3>
             <div className="playlists-list-cont">
-              <ul>
-                {playlistsNames.map((p) => (
-                  <li onClick={playListClickHandler} key={p}>
-                    {p}
-                  </li>
-                ))}
-              </ul>
+              <ul>{liElems}</ul>
             </div>
           </>
         ) : null}
