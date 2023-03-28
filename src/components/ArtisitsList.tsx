@@ -16,7 +16,9 @@ const ArtisitsList = (props: ArtisitsListProps) => {
     useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
   const { events } = useDraggable(ref);
   /* -------------------------------- */
-  const artistsElems = artists?.map((artist) => <Artist artist={artist} />);
+  const artistsElems = artists?.map((artist) => (
+    <Artist artist={artist} key={artist.adamid} />
+  ));
   return (
     <div className="album-list">
       <div className="headline-cont">
