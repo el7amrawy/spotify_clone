@@ -4,14 +4,22 @@ import {
   faMagnifyingGlass,
   faHeart,
   faCirclePlay,
+  faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState, Dispatch } from "react";
 import { Link } from "react-router-dom";
 import { usePlaylists } from "../context/PlaylistsProvider";
 import AddToPlaylist from "./AddToPlaylist";
 import { useLocation } from "react-router-dom";
 
-const SideBar = () => {
+type SideBarProps = {
+  toggleSidebar: boolean;
+  setToggleSidebar: Dispatch<React.SetStateAction<boolean>>;
+};
+
+const SideBar = (/*props: SideBarProps*/) => {
+  // const { toggleSidebar, setToggleSidebar } = props;
+  /* ---------------------------- */
   const { togglePlaylist } = usePlaylists();
   const loacation = useLocation();
   /* -------------- states -------------- */
@@ -42,6 +50,16 @@ const SideBar = () => {
     <>
       {togglePlaylist ? <AddToPlaylist /> : null}
       <aside id="sidebar">
+        <FontAwesomeIcon
+          icon={faCircleXmark}
+          id="x-mark"
+          onClick={() => {
+            const sideBar = document.getElementById("sidebar") as HTMLElement;
+            const bars = document.getElementById("bars") as HTMLElement;
+            sideBar.style.display = "none";
+            bars.style.visibility = "visible";
+          }}
+        />
         <Link className="active-tab" to="home" onClick={clickHandler}>
           <FontAwesomeIcon icon={faBarsStaggered} />
           home
