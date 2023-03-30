@@ -75,7 +75,34 @@ main {
 #sidebar > a > svg {
   margin-right: 24px;
 }
-
+#bars {
+  display: none;
+}
+#x-mark {
+  display: none;
+}
+@media (max-width: 991px) {
+  #sidebar {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    z-index: 999;
+  }
+  #bars {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 99999;
+  }
+  #x-mark {
+    display: block;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 1.5rem;
+  }
+}
 /* --------------- Home page --------------- */
 #home {
   flex: 1 1 0;
@@ -101,6 +128,20 @@ main {
   display: block;
   font-size: 2.3rem;
   text-align: right;
+}
+@media (max-width: 991px) {
+  #hero {
+    /* width: 100vw; */
+    padding: 3rem;
+  }
+
+  #hero > p {
+    width: fit-content;
+    font-size: 1.5rem;
+  }
+  #hero > p > span {
+    font-size: 1.2rem;
+  }
 }
 /* --------------- releases --------------- */
 .album-list {
@@ -199,6 +240,8 @@ main {
 #search {
   flex: 1 1 0;
   padding: 2rem;
+  height: 100vh;
+  overflow-y: auto;
 }
 #search .search-bar {
   background: var(--bg-3rd);
@@ -249,6 +292,27 @@ main {
   height: 100vh;
   padding: 2rem;
   overflow-y: auto;
+}
+@media (max-width: 991px) {
+  #favourites {
+    padding: 2rem 0;
+  }
+  #favourites .album-list .albums-cont {
+    flex-direction: column;
+  }
+  #favourites .album-list .albums-cont .song {
+    margin: 1rem 0;
+  }
+  #favourites .album-list .albums-cont .song > div {
+    width: 80%;
+    height: auto;
+  }
+  #favourites .album-list .headline-cont .line {
+    display: none;
+  }
+  #favourites .album-list .headline-cont .conrolers-cont {
+    display: none;
+  }
 }
 /* --------------- add-to playlist --------------- */
 .add-playlist-cont {
@@ -325,4 +389,9 @@ main {
   height: 100vh;
   padding: 2rem;
   overflow-y: auto;
+}
+@media (max-width: 991px) {
+  .album-list {
+    padding: 1rem;
+  }
 }
