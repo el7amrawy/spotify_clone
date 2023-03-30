@@ -3,9 +3,10 @@ import SideBar from "../components/SideBar";
 import FavouriteSongsProvider from "../context/FavouriteSongsProvider";
 import PlaylistsProvider from "../context/PlaylistsProvider";
 import ChosedSongProvider from "../context/ChosedSongProvider";
+import useAuth from "../hooks/useAuth";
 
 const RootPage = () => {
-  return (
+  return useAuth() ? (
     <FavouriteSongsProvider>
       <PlaylistsProvider>
         <ChosedSongProvider>
@@ -16,6 +17,8 @@ const RootPage = () => {
         </ChosedSongProvider>
       </PlaylistsProvider>
     </FavouriteSongsProvider>
+  ) : (
+    "login"
   );
 };
 export default RootPage;

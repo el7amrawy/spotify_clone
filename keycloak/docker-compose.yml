@@ -1,0 +1,25 @@
+services:
+  keycloak:
+    image: bitnami/keycloak:latest
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - dev_network
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    healthcheck:
+      test: "exit 0"
+    networks:
+      - dev_network
+networks:
+  dev_network:
+    driver: bridge
