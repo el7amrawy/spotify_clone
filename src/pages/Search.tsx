@@ -11,8 +11,11 @@ const Search = () => {
   useEffect(() => {
     if (searchValue.length) {
       axios
-        .get(config.api + "/auto-complete", {
-          headers: config.headers,
+        .get(config.api + `/auto-complete`, {
+          headers: {
+            "X-RapidAPI-Key": config.headers.key,
+            "X-RapidAPI-Host": config.headers.host,
+          },
           params: {
             term: searchValue,
           },

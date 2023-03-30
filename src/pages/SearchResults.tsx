@@ -14,8 +14,11 @@ const SearchResults = () => {
   const [artists, setArtists] = useState([] as ArtistData[]);
   useEffect(() => {
     axios
-      .get(config.api + "/search", {
-        headers: config.headers,
+      .get(config.api + `/search`, {
+        headers: {
+          "X-RapidAPI-Key": config.headers.key,
+          "X-RapidAPI-Host": config.headers.host,
+        },
         params: {
           term: string,
           locale: "en-US",

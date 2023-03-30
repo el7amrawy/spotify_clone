@@ -6,19 +6,13 @@ import {
   faCirclePlay,
   faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { SyntheticEvent, useEffect, useState, Dispatch } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { usePlaylists } from "../context/PlaylistsProvider";
 import AddToPlaylist from "./AddToPlaylist";
 import { useLocation } from "react-router-dom";
 
-type SideBarProps = {
-  toggleSidebar: boolean;
-  setToggleSidebar: Dispatch<React.SetStateAction<boolean>>;
-};
-
-const SideBar = (/*props: SideBarProps*/) => {
-  // const { toggleSidebar, setToggleSidebar } = props;
+const SideBar = () => {
   /* ---------------------------- */
   const { togglePlaylist } = usePlaylists();
   const loacation = useLocation();

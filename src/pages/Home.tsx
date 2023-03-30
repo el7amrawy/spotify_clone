@@ -13,8 +13,11 @@ const Home = () => {
   /* ---------------- effects ---------------- */
   useEffect(() => {
     axios
-      .get(config.api + "/charts/track?pageSize=20&startFrom=0", {
-        headers: config.headers,
+      .get(config.api + `/charts/track?pageSize=20&startFrom=0`, {
+        headers: {
+          "X-RapidAPI-Key": config.headers.key,
+          "X-RapidAPI-Host": config.headers.host,
+        },
       })
       .then(({ data }) => {
         const songs: SongData[] = data.tracks;
@@ -27,9 +30,12 @@ const Home = () => {
   useEffect(() => {
     axios
       .get(
-        config.api + "/songs/list-recommendations?key=484129036&locale=en-US",
+        config.api + `/songs/list-recommendations?key=484129036&locale=en-US`,
         {
-          headers: config.headers,
+          headers: {
+            "X-RapidAPI-Key": config.headers.key,
+            "X-RapidAPI-Host": config.headers.host,
+          },
         }
       )
       .then(({ data }) => {
